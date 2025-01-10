@@ -31,6 +31,13 @@ def on_connect(client, userdata, flags, rc):
     # subscribe ไปยัง topic ที่ต้องการ
     client.subscribe("reset/value")
 client.on_connect = on_connect
+
+def on_message(client, userdata, msg):
+    if msg.topic == "topic1":
+        print(f"Message received on topic1: {msg.payload.decode()}")
+    elif msg.topic == "topic2":
+        print(f"Message received on topic2: {msg.payload.decode()}")
+client.on_message = on_message
     
 
 def generate_random_code():
